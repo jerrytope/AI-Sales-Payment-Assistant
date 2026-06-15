@@ -1,0 +1,56 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Payment Ledger — AI Sales Assistant{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Payment Ledger</h1>
+</div>
+
+<div class="glass-panel" style="padding: 24px; flex-grow: 1; display: flex; flex-direction: column;">
+    <!-- Filters & Search -->
+    <div class="ledger-filters">
+        <input type="text" id="payments-search-box" class="search-input" style="max-width: 300px;" placeholder="Search phone or reference...">
+        
+        <select id="status-filter" class="select-input">
+            <option value="">All Statuses</option>
+            <option value="PENDING">Pending</option>
+            <option value="SUCCESS">Success</option>
+            <option value="FAILED">Failed</option>
+            <option value="ABANDONED">Abandoned</option>
+        </select>
+    </div>
+
+    <!-- Data Table -->
+    <div class="ledger-table-container">
+        <table class="ledger-table">
+            <thead>
+                <tr>
+                    <th>Customer Name/Phone</th>
+                    <th>Reference</th>
+                    <th>Amount (₦)</th>
+                    <th>Status</th>
+                    <th>Reminders</th>
+                    <th>Created At</th>
+                    <th>Paid At</th>
+                </tr>
+            </thead>
+            <tbody id="payments-table-body">
+                <tr>
+                    <td colspan="7" style="text-align: center; color: var(--text-secondary); padding: 40px;">Loading transaction records...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'dashboard/js/dashboard.js' %}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        initPaymentsView();
+    });
+</script>
+{% endblock %}

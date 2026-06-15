@@ -1,0 +1,55 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Response Editor Settings — AI Sales Assistant{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Response Editor Settings</h1>
+</div>
+
+<div class="glass-panel" style="padding: 32px; flex-grow: 1; overflow-y: auto;">
+    <form id="settings-form" class="settings-grid">
+        <!-- Business Name -->
+        <div class="form-group" id="group-business_name">
+            <label class="form-label" for="setting-business_name">Business Name</label>
+            <input type="text" id="setting-business_name" class="form-input" placeholder="e.g. Acme Stores">
+            <span class="form-helper">The brand name used in welcome messages and outbound templates.</span>
+        </div>
+
+        <!-- Support Phone Number -->
+        <div class="form-group" id="group-support_phone">
+            <label class="form-label" for="setting-support_phone">Support Phone Number (WhatsApp)</label>
+            <input type="text" id="setting-support_phone" class="form-input" placeholder="e.g. +2348000000000">
+            <span class="form-helper">Number that customers are referred to when they request a human takeover.</span>
+        </div>
+
+        <!-- Catalog JSON -->
+        <div class="form-group" id="group-product_catalog">
+            <label class="form-label" for="setting-product_catalog">Product Catalog (JSON)</label>
+            <textarea id="setting-product_catalog" class="form-textarea" style="font-family: monospace; font-size: 0.85rem;" placeholder='{"items": {"default": 500000}}'></textarea>
+            <span class="form-helper">Configure product prices (in Kobo: e.g. 500000 = ₦5,000). Must be valid JSON format.</span>
+        </div>
+
+        <!-- System Prompt -->
+        <div class="form-group" id="group-ai_base_prompt">
+            <label class="form-label" for="setting-ai_base_prompt">AI Baseline System Prompt</label>
+            <textarea id="setting-ai_base_prompt" class="form-textarea" style="min-height: 180px;" placeholder="Configure how the sales bot represents itself and behaves..."></textarea>
+            <span class="form-helper">System instruction context prompt sent to Google Gemini for chat completions.</span>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 12px;">Save Configurations</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'dashboard/js/dashboard.js' %}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        initSettingsView();
+    });
+</script>
+{% endblock %}

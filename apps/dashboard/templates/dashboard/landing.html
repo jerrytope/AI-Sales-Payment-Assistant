@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sales & Payment Assistant — Lead Capture</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Styling -->
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+    <style>
+        body {
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .landing-wrap {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .landing-wrap {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .hero-badge {
+            align-self: flex-start;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-spacing: 1.1;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .features-list {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .feature-check {
+            width: 24px;
+            height: 24px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--success);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+        .lead-card {
+            padding: 32px;
+            border-radius: 20px;
+            background: rgba(30, 41, 59, 0.35);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .phone-input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .phone-prefix {
+            position: absolute;
+            left: 14px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        .phone-input-field {
+            padding-left: 56px !important;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+        }
+        .submit-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .success-overlay {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 20px;
+            padding: 40px 10px;
+        }
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--success);
+            font-size: 2rem;
+            animation: popScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popScale {
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-wrap">
+        <!-- Text & Branding -->
+        <div class="hero-text">
+            <div class="hero-badge">⚡ Commerce AI</div>
+            <h1 class="hero-title">Experience Seamless Conversational Sales</h1>
+            <p class="hero-desc">Fill in the details to connect with our WhatsApp AI Automation Assistant. Instantly catalog products, generate checkouts, and request support through simple chat messages.</p>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <p><strong>Instant Welcome flow:</strong> Submit form to automatically trigger welcome onboarding message on your phone.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <p><strong>Paystack Checkout Links:</strong> Get automated purchase checks and secure links directly in your chat stream.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <p><strong>24/7 Availability:</strong> Full automation handle for followups, payment reminders, and agent takeover transfers.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lead Form Panel -->
+        <div class="glass-panel lead-card">
+            <div id="form-container">
+                <h2 class="card-title" style="margin-bottom: 20px;">Register Account & Try</h2>
+                
+                <form id="lead-form" style="display: flex; flex-direction: column; gap: 16px;">
+                    {% csrf_token %}
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label class="form-label" for="lead-name">Full Name</label>
+                        <input type="text" id="lead-name" class="form-input" placeholder="e.g. Temi Tope" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label class="form-label" for="lead-email">Email Address (Optional)</label>
+                        <input type="email" id="lead-email" class="form-input" placeholder="e.g. name@domain.com">
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-group">
+                        <label class="form-label" for="lead-phone">WhatsApp Phone Number</label>
+                        <div class="phone-input-group">
+                            <span class="phone-prefix">+234</span>
+                            <input type="tel" id="lead-phone" class="form-input phone-input-field" placeholder="8012345678" pattern="[0-9]{10,11}" required>
+                        </div>
+                        <span class="form-helper">Nigerian number format (e.g., 08012345678 or 8012345678).</span>
+                    </div>
+
+                    <!-- Optional Message -->
+                    <div class="form-group">
+                        <label class="form-label" for="lead-message">Inquiry / Message</label>
+                        <textarea id="lead-message" class="form-textarea" placeholder="What are you interested in buying?"></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="btn btn-primary submit-btn">
+                        Connect on WhatsApp ⚡
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Overlay -->
+            <div id="success-container" class="success-overlay">
+                <div class="success-icon">✓</div>
+                <h3 class="card-title">Registration Successful!</h3>
+                <p style="color: var(--text-secondary); line-height: 1.5;">We have received your lead entry. Please check your WhatsApp at <strong id="success-phone" style="color: white;"></strong> for a welcome message from our assistant!</p>
+                <button onclick="resetForm()" class="btn btn-secondary" style="margin-top: 10px;">Register Another lead</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div class="notification-container" id="toast-container"></div>
+
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerText = message;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px) scale(0.95)';
+                toast.style.transition = 'all 0.3s';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        document.getElementById("lead-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById("lead-name").value.trim();
+            const email = document.getElementById("lead-email").value.trim();
+            let phone = document.getElementById("lead-phone").value.trim();
+            const message = document.getElementById("lead-message").value.trim();
+            const btn = document.getElementById("submit-btn");
+
+            // Format phone to Nigerian standard format e.g. +2348012345678
+            if (phone.startsWith("0")) {
+                phone = phone.substring(1);
+            }
+            const fullPhone = "+234" + phone;
+
+            btn.disabled = true;
+            btn.innerText = "Connecting...";
+
+            fetch("/api/leads/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrftoken
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone: fullPhone,
+                    message: message
+                })
+            })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(data => { throw new Error(data.error || "Submission failed"); });
+                }
+                return res.json();
+            })
+            .then(data => {
+                showNotification("Lead captured successfully!");
+                document.getElementById("form-container").style.display = "none";
+                document.getElementById("success-container").style.display = "flex";
+                document.getElementById("success-phone").innerText = fullPhone;
+            })
+            .catch(err => {
+                showNotification(err.message, "error");
+                btn.disabled = false;
+                btn.innerText = "Connect on WhatsApp ⚡";
+            });
+        });
+
+        function resetForm() {
+            document.getElementById("lead-form").reset();
+            document.getElementById("form-container").style.display = "block";
+            document.getElementById("success-container").style.display = "none";
+            const btn = document.getElementById("submit-btn");
+            btn.disabled = false;
+            btn.innerText = "Connect on WhatsApp ⚡";
+        }
+    </script>
+</body>
+</html>
